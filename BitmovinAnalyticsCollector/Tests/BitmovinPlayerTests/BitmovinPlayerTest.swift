@@ -1,5 +1,5 @@
 import XCTest
-@testable import BitmovinAnalyticsCollector
+import BitmovinAnalyticsCollector
 
 class BitmovinPlayerTest: XCTestCase {
 
@@ -26,4 +26,3 @@ class BitmovinPlayerTest: XCTestCase {
     }
 
 }
-

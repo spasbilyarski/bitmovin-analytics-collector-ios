@@ -6,8 +6,8 @@ import AVKit
 #endif
 
 #if SWIFT_PACKAGE
-@testable import AVPlayerCollector
-@testable import CoreCollector
+import AVPlayerCollector
+import CoreCollector
 #endif
 
 class AVPlayerTest: XCTestCase {
@@ -37,7 +37,7 @@ class AVPlayerTest: XCTestCase {
         let collector = AVPlayerCollector(config: BitmovinAnalyticsConfig(key: ""))
         collector.detachPlayer()
     }
-    
+
     func testCollectorWontCrashOnMultipleDetachPlayerCalls() {
         let player = AVPlayer()
         let collector = AVPlayerCollector(config: BitmovinAnalyticsConfig(key: ""))
@@ -45,7 +45,7 @@ class AVPlayerTest: XCTestCase {
         collector.detachPlayer()
         collector.detachPlayer()
     }
-    
+
     func testCollectorWontCallDetachPlayerMultipleTimesOnPlayAttemptFailed() {
         let player = AVPlayer()
         let collector = AVPlayerCollector(config: BitmovinAnalyticsConfig(key: ""))
@@ -54,4 +54,3 @@ class AVPlayerTest: XCTestCase {
         collector.detachPlayer()
     }
 }
-

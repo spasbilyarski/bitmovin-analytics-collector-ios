@@ -1,11 +1,11 @@
 import XCTest
 import AVKit
-@testable import BitmovinAnalyticsCollector
+import BitmovinAnalyticsCollector
 
 class AVPlayerAdapterTests: XCTestCase {
-    
+
     func test() {
-        
+
         let player = AVPlayer()
         player.isMuted = true
         let config = BitmovinAnalyticsConfig(key: "")
@@ -25,7 +25,7 @@ class AVPlayerAdapterTests: XCTestCase {
                 player.play()
                 sleep(5) // to get the chance of some playback
             print(player.currentTime())
-            
+
             player.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1)) { (Bool) in
                 print("seek finished")
                 print(player.currentTime())
@@ -35,7 +35,7 @@ class AVPlayerAdapterTests: XCTestCase {
             }
         }
         wait(for: [expectation], timeout: 20)
-        
+
 //        player.replaceCurrentItem(with: AVPlayerItem(asset: asset))
 //
 //        player.play()
@@ -43,13 +43,13 @@ class AVPlayerAdapterTests: XCTestCase {
 //        player.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
 //        adapter.destroy()
     }
-    
+
     func testStopMonitoringWontFailOnMultipleCalls() throws {
         let player = AVPlayer()
         let config = BitmovinAnalyticsConfig(key: "")
         let stateMachine = StateMachine(config: config)
         let adapter = AVPlayerAdapter(player: player, config: config, stateMachine: stateMachine)
-        
+
         adapter.stopMonitoring()
         adapter.stopMonitoring()
     }

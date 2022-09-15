@@ -2,7 +2,7 @@ import Foundation
 import AVFoundation
 
 #if SWIFT_PACKAGE
-@testable import CoreCollector
+import CoreCollector
 #endif
 
 class AVPlayerAdapterFactory {
@@ -13,7 +13,7 @@ class AVPlayerAdapterFactory {
         let downloadSpeedDetectionService = DownloadSpeedDetectionService(downloadSpeedMeter: downloadSpeedMeter)
         let playbackTypeDetectionService = PlaybackTypeDetectionService(player: player)
         let manipulator = AVPlayerEventDataManipulator(player: player, playbackTypeDetectionService: playbackTypeDetectionService, downloadSpeedMeter: downloadSpeedMeter)
-        
+
         return AVPlayerAdapter(player: player,
                                stateMachine: stateMachine,
                                errorHandler: errorHandler,

@@ -1,9 +1,9 @@
 import XCTest
 import BitmovinPlayer
-@testable import BitmovinAnalyticsCollector
+import BitmovinAnalyticsCollector
 
 class BitmovinPlayerAdapterTests: XCTestCase {
-    
+
     func testStopMonitoringWontFailOnMultipleCalls() throws {
         let playerConfig = PlayerConfiguration()
         playerConfig.key = "asdf"
@@ -11,11 +11,11 @@ class BitmovinPlayerAdapterTests: XCTestCase {
         let config = BitmovinAnalyticsConfig(key: "")
         let stateMachine = StateMachine(config: config)
         let adapter = BitmovinPlayerAdapter(player: player, config: config, stateMachine: stateMachine)
-        
+
         adapter.stopMonitoring()
         adapter.stopMonitoring()
     }
-    
+
     func testStartMonitoringWontFailOnMultipleCalls() throws {
         let playerConfig = PlayerConfiguration()
         playerConfig.key = "asdf"
@@ -23,7 +23,7 @@ class BitmovinPlayerAdapterTests: XCTestCase {
         let config = BitmovinAnalyticsConfig(key: "")
         let stateMachine = StateMachine(config: config)
         let adapter = BitmovinPlayerAdapter(player: player, config: config, stateMachine: stateMachine)
-        
+
         adapter.startMonitoring()
         adapter.startMonitoring()
     }
