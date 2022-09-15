@@ -6,12 +6,12 @@ import AVKit
 #endif
 
 #if SWIFT_PACKAGE
-@testable import BitmovinCollectorCore
+import BitmovinCollectorCore
 import CoreMedia
 #endif
 
 class UtilTests: XCTestCase {
-    
+
     func test_timeIntervalToCMTime() throws {
         // Arrange
         let tests: [(name: String, timeInterval: TimeInterval, expectedTime: CMTime?)] = [
@@ -32,7 +32,7 @@ class UtilTests: XCTestCase {
     func test_getSupportedVideoCodecs() throws {
         // Act
         let supportedVideoCodecs = Util.getSupportedVideoCodecs()
-        
+
         // Assert
         if #available(iOS 11, tvOS 11, *) {
             XCTAssertEqual(supportedVideoCodecs.count, 2)
@@ -92,16 +92,16 @@ class UtilTests: XCTestCase {
             ("WithoutClampingTo100", Int64(10), Int64(2), false, Int(500)),
             ("WithClampingTo100", Int64(10), Int64(2), true, Int(100)),
         ]
-        
+
         for test in tests {
             // Act
             let actualPct = Util.calculatePercentage(numerator: test.numerator, denominator: test.demoninator, clamp: test.clamp)
-            
+
             // Assert
             XCTAssertEqual(test.expectedPct, actualPct, "\(String(describing: test.name)): expected output to be \(String(describing: test.expectedPct)), but got \(String(describing: actualPct))")
         }
     }
-    
+
     func test_calculatePercentageForTimeInterval() throws {
         // Arrange
         let tests: [(name: String, numerator: TimeInterval?, demoninator: TimeInterval?, clamp: Bool, expectedPct: Int?)] = [
@@ -111,11 +111,11 @@ class UtilTests: XCTestCase {
             ("WithoutClampingTo100", Double(10), Double(2), false, Int(500)),
             ("WithClampingTo100", Double(10), Double(2), true, Int(100)),
         ]
-        
+
         for test in tests {
             // Act
             let actualPct = Util.calculatePercentageForTimeInterval(numerator: test.numerator, denominator: test.demoninator, clamp: test.clamp)
-            
+
             // Assert
             XCTAssertEqual(test.expectedPct, actualPct, "\(String(describing: test.name)): expected output to be \(String(describing: test.expectedPct)), but got \(String(describing: actualPct))")
         }

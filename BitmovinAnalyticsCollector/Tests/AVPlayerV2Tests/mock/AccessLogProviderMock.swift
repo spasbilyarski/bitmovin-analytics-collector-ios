@@ -5,15 +5,14 @@ import Foundation
 #endif
 
 #if SWIFT_PACKAGE
-@testable import AVPlayerCollector
-@testable import CoreCollector
+import AVPlayerCollector
+import CoreCollector
 #endif
 
 class AccessLogProviderMock: AccessLogProvider {
     var events: [AccessLogDto]? = nil
-    
+
     func getEvents() -> [AccessLogDto]? {
         return events
     }
 }
-

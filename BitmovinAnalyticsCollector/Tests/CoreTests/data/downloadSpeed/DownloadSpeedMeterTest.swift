@@ -6,37 +6,37 @@ import XCTest
 #endif
 
 #if SWIFT_PACKAGE
-@testable import CoreCollector
+import CoreCollector
 #endif
 
 
 class DownloadSpeedMeterTest: XCTestCase {
-    
+
     func testAdd_should_addNewItem() throws {
         // arrange
         let dsm = DownloadSpeedMeter()
         let measurement = SpeedMeasurement()
-        
+
         // act
         dsm.add(measurement: measurement)
-        
+
         // assert
         XCTAssertEqual(dsm.measures.count, 1)
     }
-    
+
     func testGetInfo_should_returnZeroValues_when_noMeasurements() throws {
         // arrange
         let dsm = DownloadSpeedMeter()
-        
+
         // act
         let info = dsm.getInfoAndReset()
-        
+
         // assert
         XCTAssertEqual(info.segmentsDownloadSize, 0)
         XCTAssertEqual(info.segmentsDownloadTime, 0)
         XCTAssertEqual(info.segmentsDownloadCount, 0)
     }
-    
+
     func testGetInfo_should_returnCorrectValues() throws  {
         // arrange
         let dsm = DownloadSpeedMeter()
@@ -45,16 +45,16 @@ class DownloadSpeedMeterTest: XCTestCase {
         measurement.downloadTime = 1000
         measurement.numberOfSegmentsDownloaded = 1
         dsm.add(measurement: measurement)
-        
+
         var measurement2 = SpeedMeasurement()
         measurement2.numberOfBytesTransferred = 100
         measurement2.downloadTime = 1000
         measurement2.numberOfSegmentsDownloaded = 2
         dsm.add(measurement: measurement2)
-        
+
         // act
         let info = dsm.getInfoAndReset()
-        
+
         // assert
         XCTAssertEqual(info.segmentsDownloadSize, 150)
         XCTAssertEqual(info.segmentsDownloadTime, 2000)

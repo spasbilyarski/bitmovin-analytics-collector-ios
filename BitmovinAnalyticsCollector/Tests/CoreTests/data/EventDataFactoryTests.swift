@@ -4,15 +4,15 @@ import XCTest
 #endif
 
 #if SWIFT_PACKAGE
-@testable import CoreCollector
+import CoreCollector
 #endif
 
 class EventDataFactoryTests: XCTestCase {
-    
+
     func test_createEventData_should_returnEventDataWithBasicDataSet() {
         // arrange
         let eventDataFactory = createDefaultEventDataFactoryForTest()
-        
+
         // act
         let eventData = eventDataFactory.createEventData(
             "test-state",
@@ -23,7 +23,7 @@ class EventDataFactoryTests: XCTestCase {
             nil,
             ""
         )
-        
+
         // arrange
         XCTAssertEqual(eventData.version, UIDevice.current.systemVersion)
         XCTAssertEqual(eventData.domain, Util.mainBundleIdentifier())
@@ -32,11 +32,11 @@ class EventDataFactoryTests: XCTestCase {
         XCTAssertEqual(eventData.userAgent, DeviceInformationUtils.userAgent())
         XCTAssertNotNil(eventData.deviceInformation)
     }
-    
+
     func test_createEventData_should_returnEventDataWithAnalyticsVersionSet() {
         // arrange
         let eventDataFactory = createDefaultEventDataFactoryForTest()
-        
+
         // act
         let eventData = eventDataFactory.createEventData(
             "test-state",
@@ -47,16 +47,16 @@ class EventDataFactoryTests: XCTestCase {
             nil,
             ""
         )
-        
+
         // arrange
         XCTAssertNotNil(eventData.analyticsVersion)
     }
-    
+
     func test_createEventData_should_returnEventDataWithConfigDataSet() {
         // arrange
         let config = getTestBitmovinConfig()
         let eventDataFactory = createDefaultEventDataFactoryForTest(config: config)
-        
+
         // act
         let eventData = eventDataFactory.createEventData(
             "test-state",
@@ -67,12 +67,12 @@ class EventDataFactoryTests: XCTestCase {
             nil,
             ""
         )
-        
+
         // arrange
         XCTAssertEqual(eventData.key, config.key)
         XCTAssertEqual(eventData.playerKey, config.playerKey)
         XCTAssertNotNil(eventData.customUserId, config.customerUserId!)
-        
+
         XCTAssertEqual(eventData.cdnProvider, config.cdnProvider)
         XCTAssertEqual(eventData.customData1, config.customData1)
         XCTAssertEqual(eventData.customData2, config.customData2)
@@ -109,7 +109,7 @@ class EventDataFactoryTests: XCTestCase {
         XCTAssertEqual(eventData.experimentName, config.experimentName)
         XCTAssertEqual(eventData.path, config.path)
     }
-    
+
     func test_createEventData_should_returnEventDataWithSourceMetaDataSet() {
         // arrange
         let eventDataFactory = createDefaultEventDataFactoryForTest()
@@ -149,7 +149,7 @@ class EventDataFactoryTests: XCTestCase {
             customData29: "test-customData29-sourceMetadata",
             customData30: "test-customData30-sourceMetadata",
             experimentName: "test-experiment-sourceMetadata")
-        
+
         // act
         let eventData = eventDataFactory.createEventData(
             "test-state",
@@ -160,7 +160,7 @@ class EventDataFactoryTests: XCTestCase {
             currentSourceMetadata,
             ""
         )
-        
+
         // arrange
         XCTAssertEqual(eventData.cdnProvider, currentSourceMetadata.cdnProvider)
         XCTAssertEqual(eventData.customData1, currentSourceMetadata.customData1)
@@ -222,21 +222,21 @@ class EventDataFactoryTests: XCTestCase {
         XCTAssertEqual(eventData.drmLoadTime, 60)
         XCTAssertEqual(eventData.userId, "test-userId")
     }
-    
+
     func test_serializeEventData() throws {
-        
+
     }
-    
+
     private func createDefaultEventDataFactoryForTest(config: BitmovinAnalyticsConfig? = nil) -> EventDataFactory {
-        
+
         var c = config
         if c == nil {
             c = getTestBitmovinConfig()
         }
-        
+
         return EventDataFactory(c!)
     }
-    
+
     private func getTestBitmovinConfig() -> BitmovinAnalyticsConfig{
         let config = BitmovinAnalyticsConfig(key: "analytics-key", playerKey: "player-key")
         config.customerUserId = "test-customer-user-id"

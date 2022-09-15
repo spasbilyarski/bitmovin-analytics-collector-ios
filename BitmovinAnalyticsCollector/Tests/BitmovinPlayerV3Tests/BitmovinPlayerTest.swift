@@ -4,8 +4,8 @@ import XCTest
 #endif
 
 #if SWIFT_PACKAGE
-@testable import BitmovinPlayerCollector
-@testable import CoreCollector
+import BitmovinPlayerCollector
+import CoreCollector
 #endif
 
 class BitmovinPlayerV3Test: XCTestCase {
@@ -33,4 +33,3 @@ class BitmovinPlayerV3Test: XCTestCase {
     }
 
 }
-

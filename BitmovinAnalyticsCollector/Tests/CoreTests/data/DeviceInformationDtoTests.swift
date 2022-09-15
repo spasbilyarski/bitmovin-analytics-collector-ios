@@ -5,7 +5,7 @@ import XCTest
 #endif
 
 #if SWIFT_PACKAGE
-@testable import CoreCollector
+import CoreCollector
 #endif
 
 class DeviceInformationDtoTests: XCTestCase {

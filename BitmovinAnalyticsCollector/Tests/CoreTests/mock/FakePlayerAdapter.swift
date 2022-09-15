@@ -4,25 +4,25 @@ import CoreMedia
 #endif
 
 #if SWIFT_PACKAGE
-@testable import CoreCollector
+import CoreCollector
 #endif
 
 class FakePlayerAdapter: PlayerAdapter {
     func decorateEventData(eventData: EventData) {}
-    
+
     func initialize() {}
-    
+
     func stopMonitoring() {}
-    
+
     func destroy() {}
-    
+
     func resetSourceState() {}
-    
+
     func resetEventDataState() {}
-    
+
     var drmDownloadTime: Int64?
-    
+
     var currentTime: CMTime?
-    
+
     var currentSourceMetadata: SourceMetadata?
 }
